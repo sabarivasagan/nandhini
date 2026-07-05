@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>N R Nandhini — QA Automation Engineer</title>
+<meta name="description" content="N R Nandhini — QA Automation Engineer with 5.5+ years experience in Software Testing, Selenium, Java, ETL Testing at Cognizant Technology Solutions.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%238B1FAD'/><stop offset='1' stop-color='%23F761A1'/></linearGradient></defs><rect width='32' height='32' rx='7' fill='url(%23g)'/><text x='16' y='22' text-anchor='middle' font-family='Georgia,serif' font-weight='bold' font-size='13' fill='white'>NR</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-0: #FFFFFF;
+  --bg-1: #FFF0F8;
+  --bg-2: #FFE2F2;
+  --ink: #2D0520;
+  --ink-dim: #8B1A5C;
+  --ink-faint: #C2628A;
+  --blue-dark: #6B0F6E;
+  --blue-mid: #F761A1;
+  --blue-light: #FA9CC4;
+  --teal: #D44E9E;
+  --teal-bright: #E040A0;
+  --line: rgba(247,97,161,0.18);
+  --line-soft: rgba(247,97,161,0.09);
+  --line-faint: rgba(247,97,161,0.05);
+  --grad-blue: linear-gradient(135deg, #8B1FAD 0%, #F761A1 100%);
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  color: var(--ink);
+  background-color: var(--bg-0);
+  background-image:
+    linear-gradient(var(--line-faint) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line-faint) 1px, transparent 1px);
+  background-size: 48px 48px;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(247,97,161,0.5); border-radius: 3px; }
+* { scrollbar-width: thin; scrollbar-color: rgba(247,97,161,0.5) transparent; }
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  height: 64px;
+  background: linear-gradient(135deg, rgba(107,15,110,0.97), rgba(220,60,140,0.97));
+  backdrop-filter: blur(12px);
+  border-bottom: 2px solid rgba(247,97,161,0.45);
+  box-shadow: 0 2px 24px rgba(139,31,173,0.35);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 32px;
+}
+
+.nav-brand a {
+  text-decoration: none;
+  font-family: var(--font-mono); font-size: 13px;
+  color: white; letter-spacing: 0.06em;
+  display: flex; align-items: center; gap: 8px;
+}
+.nav-brand a:hover { opacity: 0.85; }
+
+.nav-tag {
+  font-family: var(--font-mono); font-size: 10px;
+  color: rgba(255,180,220,0.95);
+  background: rgba(247,97,161,0.25);
+  padding: 2px 6px; border-radius: 4px; letter-spacing: 0.05em;
+}
+
+.navlinks { display: flex; align-items: center; gap: 28px; }
+.navlinks a {
+  font-family: var(--font-mono); font-size: 12.5px;
+  color: rgba(255,255,255,0.65);
+  text-decoration: none; letter-spacing: 0.04em;
+  padding-bottom: 2px; border-bottom: 2px solid transparent;
+  transition: color 0.2s;
+}
+.navlinks a:hover, .navlinks a.active { color: white; }
+.navlinks a.active { border-bottom: 2px solid; border-image: linear-gradient(90deg,#FA9CC4,#F761A1) 1; }
+
+.nav-toggle {
+  display: none;
+  background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3);
+  color: white; font-family: var(--font-mono); font-size: 11px;
+  padding: 6px 12px; border-radius: 4px; cursor: pointer; letter-spacing: 0.08em;
+}
+
+@media (max-width: 1080px) {
+  .navlinks {
+    display: none; position: absolute; top: 64px; left: 0; right: 0;
+    flex-direction: column; align-items: flex-start; gap: 0;
+    background: linear-gradient(135deg, rgba(107,15,110,0.99), rgba(210,60,130,0.99));
+    padding: 16px 32px; border-bottom: 1px solid rgba(247,97,161,0.3);
+  }
+  .navlinks.open { display: flex; }
+  .navlinks a { padding: 10px 0; width: 100%; border-bottom: 1px solid rgba(255,255,255,0.07); }
+  .navlinks a.active { border-image: none; border-bottom: 1px solid rgba(255,255,255,0.07); color: #FA9CC4; }
+  .nav-toggle { display: block; }
+}
+
+/* ── LAYOUT UTILITIES ── */
+.wrap { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
+
+.sheet-head {
+  display: flex; align-items: baseline; justify-content: space-between;
+  margin-bottom: 40px; padding-bottom: 16px; border-bottom: 1px solid var(--line);
+}
+.sheet-head h2 { font-family: var(--font-display); font-size: clamp(24px,3.5vw,40px); font-weight: 700; color: var(--ink); }
+.sheet-num { font-family: var(--font-mono); font-size: 11px; color: var(--ink-faint); letter-spacing: 0.1em; }
+
+.reveal {
+  opacity: 0; transform: translateY(24px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+.reveal.in { opacity: 1; transform: translateY(0); }
+
+section { padding: 80px 0; border-bottom: 1px solid var(--line); }
+section:nth-child(even) { background: var(--bg-1); }
+
+/* ── HERO ── */
+#top { padding-top: 120px; padding-bottom: 80px; background: white; }
+
+.hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 60px; align-items: start; }
+
+.hero-avatar-wrap {
+  width: 140px; height: 140px; border-radius: 50%; margin-bottom: 22px;
+  background: linear-gradient(135deg,#8B1FAD,#F761A1);
+  padding: 3px; box-shadow: 0 8px 32px rgba(247,97,161,0.3);
+}
+.hero-avatar-wrap img {
+  width: 100%; height: 100%; border-radius: 50%;
+  object-fit: cover; object-position: center top; display: block; background: var(--bg-2);
+}
+.hero-avatar-placeholder {
+  width: 100%; height: 100%; border-radius: 50%;
+  background: var(--grad-blue);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-size: 42px; font-weight: 700; color: white; letter-spacing: 2px;
+}
+
+.hero-eyebrow {
+  font-family: var(--font-mono); font-size: 11px;
+  color: var(--blue-mid); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px;
+}
+.hero-h1 {
+  font-family: var(--font-display); font-size: clamp(36px,5.5vw,64px);
+  font-weight: 700; line-height: 1.1; color: var(--ink); margin-bottom: 14px;
+}
+.hero-h1 span { color: var(--blue-mid); }
+.hero-inst { font-family: var(--font-mono); font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 10px; }
+.hero-sub { font-family: var(--font-mono); font-size: 12px; color: var(--ink-faint); margin-bottom: 22px; line-height: 1.6; }
+.hero-lede { font-family: var(--font-body); font-size: 17px; color: var(--ink-dim); line-height: 1.7; margin-bottom: 32px; max-width: 520px; }
+.hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; }
+
+.btn-primary {
+  font-family: var(--font-mono); font-size: 12.5px; font-weight: 500;
+  background: var(--grad-blue); color: white; padding: 11px 24px; border-radius: 100px;
+  text-decoration: none; border: none; cursor: pointer; letter-spacing: 0.04em;
+  transition: opacity 0.2s, transform 0.2s;
+  box-shadow: 0 4px 16px rgba(247,97,161,0.4);
+}
+.btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+
+.btn-outline {
+  font-family: var(--font-mono); font-size: 12.5px;
+  background: transparent; color: var(--blue-mid); padding: 10px 22px; border-radius: 100px;
+  border: 1.5px solid var(--blue-mid); text-decoration: none; cursor: pointer; letter-spacing: 0.04em;
+  transition: background 0.2s, color 0.2s;
+}
+.btn-outline:hover { background: var(--blue-mid); color: white; }
+
+.btn-minimal {
+  font-family: var(--font-mono); font-size: 12.5px;
+  background: transparent; color: var(--ink-faint); padding: 10px 20px; border-radius: 100px;
+  border: 1.5px solid var(--line); text-decoration: none; cursor: pointer; letter-spacing: 0.04em;
+  transition: border-color 0.2s, color 0.2s;
+}
+.btn-minimal:hover { border-color: var(--blue-mid); color: var(--blue-mid); }
+
+/* HERO RIGHT */
+.stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+
+.stat-card { border-radius: 14px; padding: 22px 20px; display: flex; flex-direction: column; gap: 6px; }
+.stat-card.dark { background: linear-gradient(135deg,#6B0F6E,#C0257A); color: white; }
+.stat-card.mid { background: linear-gradient(135deg,#C0257A,#F761A1); color: white; }
+.stat-card.light { background: var(--bg-1); color: var(--ink); border: 1px solid var(--line); }
+
+.stat-num { font-family: var(--font-mono); font-size: 32px; font-weight: 700; line-height: 1; }
+.stat-card.dark .stat-num, .stat-card.mid .stat-num { color: white; }
+.stat-card.light .stat-num { color: var(--blue-mid); }
+.stat-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; }
+.stat-card.dark .stat-label, .stat-card.mid .stat-label { color: rgba(255,255,255,0.7); }
+
+.highlights-strip { background: var(--bg-1); border-radius: 14px; padding: 20px 22px; border: 1px solid var(--line); }
+.highlights-strip h4 { font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-faint); margin-bottom: 12px; }
+.highlight-item { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; font-size: 13px; color: var(--ink-dim); line-height: 1.5; }
+.h-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+
+@media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; } .hero-right-panel { display: none; } }
+@media (max-width: 600px) { .hero-avatar-wrap { width: 80px; height: 80px; } }
+
+/* ── PROFILE ── */
+.profile-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 54px; }
+.bio-text p { font-size: 15px; color: var(--ink-dim); line-height: 1.75; margin-bottom: 18px; }
+
+.expertise-cards { display: flex; flex-direction: column; gap: 16px; }
+.expertise-card {
+  background: white; border-radius: 12px; padding: 18px 20px;
+  border: 1px solid var(--line); border-left: 3px solid var(--blue-mid);
+  display: flex; gap: 14px; align-items: flex-start;
+}
+.ec-icon { width: 36px; height: 36px; border-radius: 8px; background: var(--bg-2); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.ec-icon svg { width: 18px; height: 18px; }
+.ec-content h4 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+.ec-content p { font-size: 12px; color: var(--ink-faint); line-height: 1.5; }
+
+@media (max-width: 860px) { .profile-grid { grid-template-columns: 1fr; } }
+
+/* ── EXPERIENCE ── */
+.exp-table-wrap { overflow-x: auto; margin-bottom: 28px; }
+.exp-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.exp-table th { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-faint); padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--line); }
+.exp-table td { padding: 14px; border-bottom: 1px solid var(--line-faint); vertical-align: top; }
+.exp-table tr:hover td { background: var(--bg-1); }
+.exp-table tr.highlight td:first-child { border-left: 3px solid var(--blue-mid); padding-left: 11px; }
+.row-num { font-family: var(--font-mono); font-size: 11px; color: var(--blue-mid); }
+.exp-role { font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+.exp-bullets { margin: 8px 0 0 0; list-style: none; padding: 0; display: flex; flex-direction: column; gap: 4px; }
+.exp-bullets li { font-size: 12.5px; color: var(--ink-dim); line-height: 1.5; display: flex; gap: 8px; }
+.exp-bullets li::before { content: '·'; color: var(--blue-mid); flex-shrink: 0; }
+.exp-inst { color: var(--ink-dim); font-size: 13px; }
+.exp-period { font-family: var(--font-mono); font-size: 12px; color: var(--ink-faint); white-space: nowrap; }
+.exp-badge { display: inline-block; font-family: var(--font-mono); font-size: 9.5px; background: rgba(247,97,161,0.12); color: var(--blue-mid); padding: 2px 8px; border-radius: 100px; margin-top: 4px; letter-spacing: 0.04em; }
+
+/* ── PROJECTS ── */
+.project-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+
+.project-card {
+  background: white; border-radius: 16px; padding: 28px;
+  border: 1px solid var(--line);
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.project-card:hover { box-shadow: 0 8px 32px rgba(247,97,161,0.12); transform: translateY(-3px); }
+.project-card.featured { border-left: 4px solid var(--blue-mid); background: #FDFBFF; }
+
+.proj-eyebrow { font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--blue-mid); margin-bottom: 8px; }
+.proj-title { font-family: var(--font-display); font-size: 20px; font-weight: 700; color: var(--ink); margin-bottom: 6px; line-height: 1.2; }
+.proj-role { font-family: var(--font-mono); font-size: 11px; color: var(--ink-faint); margin-bottom: 14px; }
+
+.proj-tools { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+.tool-tag {
+  font-family: var(--font-mono); font-size: 10.5px;
+  background: var(--bg-2); color: var(--blue-mid);
+  padding: 3px 10px; border-radius: 100px; letter-spacing: 0.04em;
+}
+
+.proj-desc { font-size: 13px; color: var(--ink-dim); line-height: 1.65; margin-bottom: 16px; }
+
+.proj-bullets { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.proj-bullets li { font-size: 13px; color: var(--ink-dim); line-height: 1.5; display: flex; gap: 10px; }
+.proj-bullets li::before { content: '▸'; color: var(--blue-mid); flex-shrink: 0; font-size: 10px; margin-top: 3px; }
+
+@media (max-width: 860px) { .project-grid { grid-template-columns: 1fr; } }
+
+/* ── SKILLS ── */
+.skills-section-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+
+.skill-group h3 {
+  font-family: var(--font-mono); font-size: 11px; text-transform: uppercase;
+  letter-spacing: 0.1em; color: var(--ink-faint); margin-bottom: 18px;
+  padding-bottom: 8px; border-bottom: 1px solid var(--line);
+}
+
+.skill-rows { display: flex; flex-direction: column; gap: 14px; }
+.skill-item label {
+  display: flex; justify-content: space-between;
+  font-family: var(--font-mono); font-size: 12px; color: var(--ink-dim); margin-bottom: 7px;
+}
+.skill-pct { color: var(--blue-mid); }
+.bar-track { height: 5px; background: var(--line); border-radius: 3px; overflow: hidden; }
+.bar-fill { height: 100%; background: var(--grad-blue); border-radius: 3px; width: 0; transition: width 0.9s ease; }
+
+.tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 10px; margin-top: 32px; }
+.tool-chip {
+  display: flex; align-items: center; gap: 8px;
+  background: white; border: 1px solid var(--line);
+  border-radius: 10px; padding: 10px 14px;
+  font-family: var(--font-mono); font-size: 11.5px; color: var(--ink);
+  transition: background 0.2s, border-color 0.2s;
+}
+.tool-chip:hover { background: var(--bg-2); border-color: var(--blue-mid); }
+.tool-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+
+@media (max-width: 860px) { .skills-section-grid { grid-template-columns: 1fr; } }
+
+/* ── EDUCATION ── */
+.edu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+
+.edu-card {
+  background: white; border-radius: 14px; padding: 24px;
+  border: 1px solid var(--line);
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.edu-card:hover { box-shadow: 0 6px 24px rgba(247,97,161,0.12); transform: translateY(-2px); }
+.edu-card.top { border-left: 3px solid var(--blue-mid); background: #FDFBFF; }
+
+.edu-year { font-family: var(--font-mono); font-size: 11px; color: var(--blue-mid); letter-spacing: 0.08em; margin-bottom: 8px; }
+.edu-degree { font-family: var(--font-display); font-size: 16px; font-weight: 700; color: var(--ink); line-height: 1.3; margin-bottom: 6px; }
+.edu-inst { font-family: var(--font-mono); font-size: 11px; color: var(--ink-faint); margin-bottom: 10px; letter-spacing: 0.03em; }
+.edu-score {
+  display: inline-block; font-family: var(--font-mono); font-size: 12px; font-weight: 700;
+  color: var(--blue-mid); background: var(--bg-2); padding: 4px 12px; border-radius: 100px;
+}
+
+/* ── INTERNSHIP ── */
+.intern-card {
+  background: white; border-radius: 16px; padding: 28px 32px;
+  border: 1px solid var(--line); border-left: 4px solid var(--teal-bright);
+  display: grid; grid-template-columns: auto 1fr; gap: 28px; align-items: start;
+}
+.intern-icon { width: 52px; height: 52px; border-radius: 12px; background: var(--grad-blue); display: flex; align-items: center; justify-content: center; }
+.intern-icon svg { width: 24px; height: 24px; }
+.intern-body h3 { font-family: var(--font-display); font-size: 20px; font-weight: 700; color: var(--ink); margin-bottom: 4px; }
+.intern-body .intern-meta { font-family: var(--font-mono); font-size: 11px; color: var(--ink-faint); margin-bottom: 14px; }
+.intern-bullets { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.intern-bullets li { font-size: 13.5px; color: var(--ink-dim); line-height: 1.55; display: flex; gap: 10px; }
+.intern-bullets li::before { content: '▸'; color: var(--teal-bright); flex-shrink: 0; font-size: 10px; margin-top: 3px; }
+
+@media (max-width: 600px) { .intern-card { grid-template-columns: 1fr; } }
+
+/* ── CONTACT ── */
+.contact-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 54px; }
+.contact-h2 { font-family: var(--font-display); font-size: clamp(28px,4vw,44px); font-weight: 700; color: var(--ink); margin-bottom: 14px; }
+.contact-desc { font-size: 15px; color: var(--ink-dim); line-height: 1.7; margin-bottom: 28px; }
+
+.clist { display: flex; flex-direction: column; gap: 0; margin-bottom: 24px; }
+.clist-row { display: flex; align-items: flex-start; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--line-faint); }
+.clist-icon { width: 36px; height: 36px; border-radius: 8px; background: var(--bg-2); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.clist-icon svg { width: 16px; height: 16px; color: var(--blue-mid); }
+.clist-content { flex: 1; }
+.clist-label { font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-faint); margin-bottom: 3px; }
+.clist-value { font-size: 14px; color: var(--ink); font-weight: 500; }
+.clist-copy { background: none; border: none; cursor: pointer; padding: 4px; border-radius: 4px; color: var(--ink-faint); transition: color 0.2s; }
+.clist-copy:hover { color: var(--blue-mid); }
+.clist-copy svg { width: 15px; height: 15px; display: block; }
+
+.li-card { background: white; border-radius: 14px; overflow: hidden; border: 1px solid var(--line); margin-bottom: 16px; }
+.li-cover { height: 56px; background: linear-gradient(135deg, #1E40AF, #3B82F6); }
+.li-body { padding: 0 20px 20px; }
+.li-avatar-row { display: flex; justify-content: space-between; align-items: flex-end; margin-top: -28px; margin-bottom: 12px; }
+.li-avatar { width: 56px; height: 56px; border-radius: 50%; border: 3px solid white; overflow: hidden; background: var(--bg-2); }
+.li-avatar-placeholder { width: 100%; height: 100%; background: var(--grad-blue); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 18px; font-weight: 700; color: white; }
+.li-name { font-size: 16px; font-weight: 600; color: var(--ink); margin-bottom: 3px; }
+.li-title-li { font-size: 12px; color: var(--ink-dim); margin-bottom: 2px; }
+.li-inst { font-family: var(--font-mono); font-size: 11px; color: var(--ink-faint); margin-bottom: 14px; }
+.li-btn { display: block; text-align: center; background: #1D6FDB; color: white; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.04em; padding: 9px; border-radius: 8px; text-decoration: none; transition: opacity 0.2s; }
+.li-btn:hover { opacity: 0.85; }
+
+.ext-grid { display: flex; flex-direction: column; gap: 10px; }
+.ext-link { display: flex; align-items: center; justify-content: space-between; background: white; border-radius: 10px; padding: 13px 16px; border: 1px solid var(--line); text-decoration: none; transition: background 0.2s, box-shadow 0.2s; }
+.ext-link:hover { background: var(--bg-2); box-shadow: 0 2px 12px rgba(247,97,161,0.1); }
+.ext-name { font-size: 13px; font-weight: 600; color: var(--ink); }
+.ext-sub { font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-faint); }
+.ext-arrow { font-size: 16px; color: var(--blue-mid); }
+
+@media (max-width: 860px) { .contact-grid { grid-template-columns: 1fr; } }
+
+/* ── FOOTER ── */
+.footer-bar {
+  background: var(--blue-dark); color: rgba(255,255,255,0.6);
+  padding: 20px 32px; display: flex; justify-content: space-between; align-items: center;
+  font-family: var(--font-mono); font-size: 11px; flex-wrap: wrap; gap: 8px;
+}
+.footer-right { text-align: right; }
+
+/* ── CERTIFICATION STRIP ── */
+.cert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 8px; }
+.cert-card {
+  background: white; border-radius: 12px; padding: 18px 20px;
+  border: 1px solid var(--line); display: flex; gap: 14px; align-items: flex-start;
+}
+.cert-icon { width: 32px; height: 32px; border-radius: 7px; background: var(--grad-blue); flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+.cert-icon svg { width: 16px; height: 16px; }
+.cert-title { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 3px; line-height: 1.3; }
+.cert-issuer { font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-faint); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">
+    <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">
+      N R NANDHINI
+      <span class="nav-tag">/ QA-CV-01</span>
+    </a>
+  </div>
+  <button class="nav-toggle" id="navToggle">MENU</button>
+  <div class="navlinks" id="navlinks">
+    <a href="#profile">Profile</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#internship">Internship</a>
+    <a href="#education">Education</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="top">
+  <div class="wrap">
+    <div class="hero-grid">
+      <!-- LEFT -->
+      <div>
+        <div class="hero-avatar-wrap reveal">
+          <img src="images/nandhini-profile.jpg" alt="N R Nandhini">
+        </div>
+        <div class="hero-eyebrow reveal">Quality Analyst &nbsp;·&nbsp; Software Testing &nbsp;·&nbsp; Banking Domain</div>
+        <h1 class="hero-h1 reveal">N R <span>Nandhini</span></h1>
+        <div class="hero-inst reveal">Cognizant Technology Solutions</div>
+        <div class="hero-sub reveal">
+          5.5+ Years Experience &nbsp;·&nbsp; Java &nbsp;·&nbsp; Selenium &nbsp;·&nbsp; TestNG &nbsp;·&nbsp; Jenkins &nbsp;·&nbsp; ETL Testing
+        </div>
+        <p class="hero-lede reveal">
+          Passionate QA Automation Engineer ensuring software reliability and quality in the Banking domain. Expert in Java automation with Selenium and TestNG, ETL testing, CI/CD integration with Jenkins, and end-to-end test coverage across functional and regression domains for Royal Bank of Canada.
+        </p>
+        <div class="hero-ctas reveal">
+          <a href="#projects" class="btn-primary">View Projects</a>
+          <a href="#skills" class="btn-outline">Tech Stack</a>
+          <a href="#contact" class="btn-minimal">Contact</a>
+        </div>
+      </div>
+      <!-- RIGHT -->
+      <div class="hero-right-panel reveal">
+        <div class="stat-grid">
+          <div class="stat-card dark">
+            <div class="stat-num" data-count="5" data-suffix=".5+">0</div>
+            <div class="stat-label">Years Experience</div>
+          </div>
+          <div class="stat-card mid">
+            <div class="stat-num" data-count="2">0</div>
+            <div class="stat-label">Major Projects</div>
+          </div>
+          <div class="stat-card light">
+            <div class="stat-num" style="font-size:24px;">RBC</div>
+            <div class="stat-label">Primary Client</div>
+          </div>
+          <div class="stat-card light">
+            <div class="stat-num" style="font-size:22px;">MCA</div>
+            <div class="stat-label">8.93 CGPA</div>
+          </div>
+        </div>
+        <div class="highlights-strip">
+          <h4>Key Highlights</h4>
+          <div class="highlight-item">
+            <span class="h-dot" style="background:#F761A1;"></span>
+            5+ years at Royal Bank of Canada (RBC) banking platform via Cognizant
+          </div>
+          <div class="highlight-item">
+            <span class="h-dot" style="background:#D44E9E;"></span>
+            Expertise in Selenium WebDriver automation with Java &amp; TestNG
+          </div>
+          <div class="highlight-item">
+            <span class="h-dot" style="background:#E040A0;"></span>
+            Extensive ETL testing — data reconciliation with complex SQL &amp; Teradata
+          </div>
+          <div class="highlight-item">
+            <span class="h-dot" style="background:#FA9CC4;"></span>
+            CI/CD pipeline integration using Jenkins for continuous build testing
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROFILE -->
+<section id="profile">
+  <div class="wrap">
+    <div class="sheet-head">
+      <h2>Profile</h2>
+      <span class="sheet-num">SHEET 01 / 07</span>
+    </div>
+    <div class="profile-grid">
+      <div class="bio-text reveal">
+        <p>N R Nandhini is a dedicated QA Automation Engineer with over 5.5 years of hands-on experience ensuring software reliability, quality, and performance in the Banking industry. Currently employed at Cognizant Technology Solutions, she has been consistently engaged as Quality Analyst for the Royal Bank of Canada (RBC) — one of the world's largest financial institutions — across multiple platform projects.</p>
+        <p>Her expertise spans the full testing lifecycle: from requirements analysis and test case design through to execution, defect management, and release sign-off. She is skilled in building and maintaining Selenium-based automation frameworks in Java, developing complex SQL queries for backend data validation, and integrating test suites into CI/CD pipelines via Jenkins.</p>
+        <p>Nandhini holds a Master of Computer Applications (MCA) from Thiagarajar College of Engineering with a 8.93 CGPA, demonstrating strong academic grounding in computer science fundamentals. Her internship at Cognizant, where she trained in Core Java, SQL, Software Testing and Selenium, laid the foundation for her professional excellence in automation engineering.</p>
+      </div>
+      <div class="expertise-cards reveal">
+        <div class="expertise-card">
+          <div class="ec-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--blue-mid)" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          </div>
+          <div class="ec-content">
+            <h4>Automation Testing</h4>
+            <p>Selenium WebDriver, Java, TestNG — building and maintaining regression automation suites.</p>
+          </div>
+        </div>
+        <div class="expertise-card" style="border-left-color:#D44E9E;">
+          <div class="ec-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--teal-bright)" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+          </div>
+          <div class="ec-content">
+            <h4>ETL &amp; Data Testing</h4>
+            <p>SQL queries, Teradata, data reconciliation between source systems and EDW/BI reports.</p>
+          </div>
+        </div>
+        <div class="expertise-card" style="border-left-color:#E040A0;">
+          <div class="ec-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div class="ec-content">
+            <h4>CI/CD &amp; DevOps Testing</h4>
+            <p>Jenkins pipeline integration, continuous build testing, automated test execution on code commits.</p>
+          </div>
+        </div>
+        <div class="expertise-card" style="border-left-color:#FA9CC4;">
+          <div class="ec-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--blue-light)" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+          </div>
+          <div class="ec-content">
+            <h4>Defect Management</h4>
+            <p>HP ALM, Jira — RTM maintenance, defect logging, cross-team coordination with developers and BAs.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" style="background:#fff;">
+  <div class="wrap">
+    <div class="sheet-head">
+      <h2>Work Experience</h2>
+      <span class="sheet-num">SHEET 02 / 07</span>
+    </div>
+    <div class="exp-table-wrap reveal">
+      <table class="exp-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Role &amp; Responsibilities</th>
+            <th>Organisation</th>
+            <th>Period</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="highlight">
+            <td class="row-num">01</td>
+            <td>
+              <div class="exp-role">Quality Analyst</div>
+              <div class="exp-inst">Royal Bank of Canada (RBC) — Banking Platform</div>
+              <span class="exp-badge">Current Role</span>
+              <ul class="exp-bullets">
+                <li>Engaged as QA for RBC banking platform projects over 5+ years end-to-end.</li>
+                <li>Delivered functional, regression, and ETL test coverage across releases.</li>
+                <li>Collaborated with developers, BAs, and stakeholders for defect resolution and release readiness.</li>
+              </ul>
+            </td>
+            <td class="exp-inst">Cognizant Technology Solutions</td>
+            <td class="exp-period">Nov 2020 – Present</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="wrap">
+    <div class="sheet-head">
+      <h2>Project Experience</h2>
+      <span class="sheet-num">SHEET 03 / 07</span>
+    </div>
+    <div class="project-grid">
+      <!-- COLLINE -->
+      <div class="project-card featured reveal">
+        <div class="proj-eyebrow">Royal Bank of Canada · Automation</div>
+        <div class="proj-title">RBC — Colline</div>
+        <div class="proj-role">Quality Analyst</div>
+        <div class="proj-tools">
+          <span class="tool-tag">Unix</span>
+          <span class="tool-tag">Selenium</span>
+          <span class="tool-tag">Java</span>
+          <span class="tool-tag">TestNG</span>
+        </div>
+        <p class="proj-desc">
+          The Royal Bank of Canada (RBC) is a Canadian multinational financial services company and the largest bank in Canada by market capitalisation, serving over 16 million clients with 80,000 employees worldwide through its network of 1,209 branches.
+        </p>
+        <ul class="proj-bullets">
+          <li>Underwent KT sessions to deeply understand the Colline project domain and workflows.</li>
+          <li>Added new test cases to the existing automation suite as part of regression automation.</li>
+          <li>Contributed to agile testing processes, sprint planning, and defect tracking.</li>
+          <li>Interfaced with development teams to document test results and present detailed bug reports.</li>
+        </ul>
+      </div>
+      <!-- PATHFINDER -->
+      <div class="project-card featured reveal">
+        <div class="proj-eyebrow">Royal Bank of Canada · ETL &amp; Automation</div>
+        <div class="proj-title">RBC — Pathfinder</div>
+        <div class="proj-role">Quality Analyst</div>
+        <div class="proj-tools">
+          <span class="tool-tag">Unix</span>
+          <span class="tool-tag">Selenium</span>
+          <span class="tool-tag">Jenkins</span>
+          <span class="tool-tag">SQL</span>
+          <span class="tool-tag">Teradata</span>
+          <span class="tool-tag">HP ALM</span>
+          <span class="tool-tag">Jira</span>
+        </div>
+        <ul class="proj-bullets">
+          <li>Utilised Selenium WebDriver to develop automated test scripts, reducing manual testing effort.</li>
+          <li>Collaborated with developers to identify and prioritise test cases based on risk and impact.</li>
+          <li>Spearheaded regression testing and analysed test results for timely defect identification and resolution.</li>
+          <li>Performed extensive ETL testing validating data flow from legacy banking systems to Enterprise Data Warehouse (EDW) and downstream BI reports.</li>
+          <li>Developed complex SQL queries for backend data reconciliation, verifying data integrity and identifying discrepancies between source and target.</li>
+          <li>Integrated automated ETL and UI test suites into CI/CD pipelines using Jenkins for continuous build testing.</li>
+          <li>Extensively used ETL tool Teradata to extract, transform, and load data.</li>
+          <li>Logged defects and maintained RTM in HP ALM / Jira, coordinating with developers for resolution.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" style="background:#fff;">
+  <div class="wrap">
+    <div class="sheet-head">
+      <h2>Technical Skills</h2>
+      <span class="sheet-num">SHEET 04 / 07</span>
+    </div>
+    <div class="skills-section-grid reveal">
+      <div class="skill-group">
+        <h3>Core Proficiency</h3>
+        <div class="skill-rows">
+          <div class="skill-item">
+            <label><span>Java</span><span class="skill-pct">90%</span></label>
+            <div class="bar-track"><div class="bar-fill" data-pct="90"></div></div>
+          </div>
+          <div class="skill-item">
+            <label><span>Selenium WebDriver</span><span class="skill-pct">92%</span></label>
+            <div class="bar-track"><div class="bar-fill" data-pct="92"></div></div>
+          </div>
+          <div class="skill-item">
+            <label><span>SQL</span><span class="skill-pct">88%</span></label>
+            <div class="bar-track"><div class="bar-fill" data-pct="88"></div></div>
+          </div>
+          <div class="skill-item">
+            <label><span>TestNG</span><span class="skill-pct">88%</span></label>
+            <div class="bar-track"><div class="bar-fill" data-pct="88"></div></div>
+          </div>
+          <div class="skill-item">
+            <label><span>ETL Testing</span><span class="skill-pct">85%</span></label>
+            <div class="bar-track"><div class="bar-fill" data-pct="85"></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Tools &amp; Platforms</h3>
+        <div class="skill-rows">
+          <div class="skill-item">
+            <label><span>Jenkins (CI/CD)</span><span class="skill-pct">82%</span></label>
+            <div class="bar-track"><div class="bar-fill" data-pct="82"></div></div>
+          </div>
+          <div class="skill-item">
+            <label><span>HP ALM / Jira</span><span class="skill-pct">85%</span></label>
+            <div class="bar-track"><div class="bar-fill" data-pct="85"></div></div>
+          </div>
+          <div class="skill-item">
+            <label><span>Teradata</span><span class="skill-pct">80%</span></label>
+            <div class="bar-track"><div class="bar-fill" data-pct="80"></div></div>
+          </div>
+          <div class="skill-item">
+            <label><span>Unix / Linux</span><span class="skill-pct">78%</span></label>
+            <div class="bar-track"><div class="bar-fill" data-pct="78"></div></div>
+          </div>
+          <div class="skill-item">
+            <label><span>Agile / Scrum</span><span class="skill-pct">85%</span></label>
+            <div class="bar-track"><div class="bar-fill" data-pct="85"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tools-grid reveal">
+      <div class="tool-chip"><span class="tool-dot" style="background:#F761A1;"></span>Java</div>
+      <div class="tool-chip"><span class="tool-dot" style="background:#D44E9E;"></span>Selenium</div>
+      <div class="tool-chip"><span class="tool-dot" style="background:#E040A0;"></span>TestNG</div>
+      <div class="tool-chip"><span class="tool-dot" style="background:#C0257A;"></span>Jenkins</div>
+      <div class="tool-chip"><span class="tool-dot" style="background:#F761A1;"></span>SQL</div>
+      <div class="tool-chip"><span class="tool-dot" style="background:#D44E9E;"></span>Teradata</div>
+      <div class="tool-chip"><span class="tool-dot" style="background:#E040A0;"></span>HP ALM</div>
+      <div class="tool-chip"><span class="tool-dot" style="background:#C0257A;"></span>Jira</div>
+      <div class="tool-chip"><span class="tool-dot" style="background:#F761A1;"></span>Unix / Linux</div>
+      <div class="tool-chip"><span class="tool-dot" style="background:#D44E9E;"></span>Windows</div>
+    </div>
+  </div>
+</section>
+
+<!-- INTERNSHIP -->
+<section id="internship">
+  <div class="wrap">
+    <div class="sheet-head">
+      <h2>Internship</h2>
+      <span class="sheet-num">SHEET 05 / 07</span>
+    </div>
+    <div class="intern-card reveal">
+      <div class="intern-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+      </div>
+      <div class="intern-body">
+        <h3>Intern — Software Testing</h3>
+        <div class="intern-meta">Cognizant Technology Solutions, Chennai, India &nbsp;·&nbsp; Cognizant Academy Program</div>
+        <div class="proj-tools" style="margin-bottom:14px;">
+          <span class="tool-tag">Core Java</span>
+          <span class="tool-tag">SQL</span>
+          <span class="tool-tag">Selenium</span>
+          <span class="tool-tag">TestNG</span>
+          <span class="tool-tag">Linux</span>
+          <span class="tool-tag">Software Testing</span>
+        </div>
+        <ul class="intern-bullets">
+          <li>Received comprehensive training in Selenium, Java, SQL, TestNG and Linux through Cognizant Academy.</li>
+          <li>Actively contributed to project work, demonstrating hands-on experience in acquired skills.</li>
+          <li>Gained expertise in development and execution of both manual and automated test cases.</li>
+          <li>Successfully completed the Internship Program with a capstone automation project.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education" style="background:#fff;">
+  <div class="wrap">
+    <div class="sheet-head">
+      <h2>Education</h2>
+      <span class="sheet-num">SHEET 06 / 07</span>
+    </div>
+    <div class="edu-grid">
+      <div class="edu-card top reveal">
+        <div class="edu-year">2020 · Post Graduate</div>
+        <div class="edu-degree">Master of Computer Applications (MCA)</div>
+        <div class="edu-inst">Thiagarajar College of Engineering, Madurai</div>
+        <span class="edu-score">8.93 CGPA</span>
+      </div>
+      <div class="edu-card reveal">
+        <div class="edu-year">2017 · Under Graduate</div>
+        <div class="edu-degree">B.Sc Computer Science</div>
+        <div class="edu-inst">Madura College, Madurai</div>
+        <span class="edu-score">82%</span>
+      </div>
+      <div class="edu-card reveal">
+        <div class="edu-year">2014 · Higher Secondary</div>
+        <div class="edu-degree">HSC (Class XII)</div>
+        <div class="edu-inst">Sitalakshmi Girls Higher Secondary School</div>
+        <span class="edu-score">89%</span>
+      </div>
+      <div class="edu-card reveal">
+        <div class="edu-year">2012 · Secondary</div>
+        <div class="edu-degree">SSC (Class X)</div>
+        <div class="edu-inst">St. Charles Girls Higher Secondary School</div>
+        <span class="edu-score">94%</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="background:var(--bg-1);">
+  <div class="wrap">
+    <div class="sheet-head">
+      <h2>Contact</h2>
+      <span class="sheet-num">SHEET 07 / 07</span>
+    </div>
+    <div class="contact-grid">
+      <div>
+        <h2 class="contact-h2 reveal">Get in Touch</h2>
+        <p class="contact-desc reveal">Open to new QA and software testing opportunities, collaborations, and discussions around automation engineering. Feel free to reach out.</p>
+        <div class="clist reveal">
+          <div class="clist-row">
+            <div class="clist-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div class="clist-content">
+              <div class="clist-label">Email</div>
+              <div class="clist-value">nandhini.nr@cognizant.com</div>
+            </div>
+            <button class="clist-copy" data-copy="nandhini.nr@cognizant.com" title="Copy email">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+            </button>
+          </div>
+          <div class="clist-row">
+            <div class="clist-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012 .9h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.18a16 16 0 006.91 6.91l1.64-1.64a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            </div>
+            <div class="clist-content">
+              <div class="clist-label">Phone</div>
+              <div class="clist-value">+91 99433 04510</div>
+            </div>
+            <button class="clist-copy" data-copy="+919943304510" title="Copy phone">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="li-card reveal">
+          <div class="li-cover"></div>
+          <div class="li-body">
+            <div class="li-avatar-row">
+              <div class="li-avatar">
+                <div class="li-avatar-placeholder">NR</div>
+              </div>
+            </div>
+            <div class="li-name">N R Nandhini</div>
+            <div class="li-title-li">Quality Analyst · Software Testing · Banking</div>
+            <div class="li-inst">Cognizant Technology Solutions</div>
+            <a href="https://linkedin.com/in/nandhini-rajan-871758130" target="_blank" rel="noopener" class="li-btn">View on LinkedIn</a>
+          </div>
+        </div>
+        <div class="ext-grid reveal">
+          <a href="https://linkedin.com/in/nandhini-rajan-871758130" target="_blank" rel="noopener" class="ext-link">
+            <div>
+              <div class="ext-name">LinkedIn Profile</div>
+              <div class="ext-sub">linkedin.com/in/nandhini-rajan-871758130</div>
+            </div>
+            <span class="ext-arrow">↗</span>
+          </a>
+          <a href="mailto:nandhini.nr@cognizant.com" class="ext-link">
+            <div>
+              <div class="ext-name">Send an Email</div>
+              <div class="ext-sub">nandhini.nr@cognizant.com</div>
+            </div>
+            <span class="ext-arrow">↗</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer-bar" id="footer-bar">
+  <span>© 2025 N R Nandhini. All rights reserved.</span>
+  <span class="footer-right">MCA · Thiagarajar College of Engineering · Cognizant Technology Solutions</span>
+</footer>
+
+<script>
+// ── COUNT-UP ──
+function ease(t) { return t < 0.5 ? 2*t*t : 1 - Math.pow(1-t, 4); }
+
+function startCountUp(el) {
+  if (el.dataset.counted) return;
+  el.dataset.counted = '1';
+  const target = +el.dataset.count;
+  const suffix = el.dataset.suffix || '';
+  const duration = 2600;
+  const start = performance.now();
+  const iv = setInterval(() => {
+    const p = Math.min((performance.now() - start) / duration, 1);
+    el.textContent = Math.round(ease(p) * target) + suffix;
+    if (p >= 1) { el.textContent = target + suffix; clearInterval(iv); }
+  }, 20);
+}
+
+// ── OBSERVERS ──
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('in');
+      revealObs.unobserve(e.target);
+      e.target.querySelectorAll('[data-count]').forEach(startCountUp);
+    }
+  });
+}, { threshold: 0.12 });
+
+const countObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { startCountUp(e.target); countObs.unobserve(e.target); } });
+}, { threshold: 0.3 });
+
+const barObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.style.width = e.target.dataset.pct + '%'; barObs.unobserve(e.target); } });
+}, { threshold: 0.12 });
+
+const navObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      document.querySelectorAll('.navlinks a').forEach(a => {
+        a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id);
+      });
+    }
+  });
+}, { rootMargin: '-45% 0px -50% 0px' });
+
+function initObservers() {
+  document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+  document.querySelectorAll('[data-count]').forEach(el => { if (!el.closest('.reveal')) countObs.observe(el); });
+  document.querySelectorAll('.bar-fill').forEach(el => barObs.observe(el));
+  document.querySelectorAll('section[id], footer[id]').forEach(el => navObs.observe(el));
+}
+
+// ── MOBILE NAV ──
+document.getElementById('navToggle').addEventListener('click', () => {
+  document.getElementById('navlinks').classList.toggle('open');
+});
+document.querySelectorAll('.navlinks a').forEach(a => {
+  a.addEventListener('click', () => document.getElementById('navlinks').classList.remove('open'));
+});
+
+// ── COPY BUTTONS ──
+document.querySelectorAll('.clist-copy').forEach(btn => {
+  btn.addEventListener('click', () => {
+    navigator.clipboard.writeText(btn.dataset.copy).then(() => {
+      const orig = btn.innerHTML;
+      btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="var(--blue-mid)" stroke-width="2.5" style="width:15px;height:15px;display:block;"><polyline points="20 6 9 17 4 12"/></svg>`;
+      setTimeout(() => { btn.innerHTML = orig; }, 2000);
+    });
+  });
+});
+
+setTimeout(initObservers, 50);
+</script>
+</body>
+</html>
